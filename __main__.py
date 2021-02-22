@@ -2,7 +2,7 @@
 
 """
 Raycasting labyrint
--Zápočtový program
+Zápočtový program
 Filip Kastl, I. ročník
 zimní semestr 2020/21
 Programování I NPRG030

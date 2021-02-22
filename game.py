@@ -113,6 +113,10 @@ class Game:
                 self.player.turn(-self.turnSpeed)
             if pressedKeys[pygame.K_l]:
                 self.player.turn(self.turnSpeed)
+
+            # End the game if 'Q' is pressed
+            if pressedKeys[pygame.K_q]:
+                keepGoing = False
             
             # Check if flag was reached
             if (not win) and self.player.get_pos() // self.blockSize == self.level.get_flag_block():
@@ -234,7 +238,7 @@ class Game:
                     pygame.draw.rect(self.minimap, self.minimapPlayerColor, rect)
             
             # Blit minimap onto window
-            self.screen.blit(self.minimap, (0, 0))
+            #self.screen.blit(self.minimap, (0, 0))
 
             # Blit win screen if player already won
             if win:

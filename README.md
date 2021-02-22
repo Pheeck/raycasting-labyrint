@@ -1,9 +1,9 @@
 ```
-Raycasting labyrinty
+Raycasting labyrint
 Zápočtový program
 Filip Kastl, I. ročník
 zimní semestr 2020/21
 Programování I NPRG030
 ```
 
-Uživatelskou dokumentaci lze najít v `user.pdf`.
+Uživatelskou dokumentaci lze najít v `user.pdf`, vývojářskou v `programmer.pdf`.
