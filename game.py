@@ -299,9 +299,10 @@ class Game:
                     pygame.draw.rect(self.screen, color, column)
 
             #
-            # Minimap
+            # Draw UI
             #
 
+            # Minimap
             if drawMinimap:
                 # Draw walls on minimap
                 self.minimap.fill(FLOOR_COLOR)
@@ -341,10 +342,6 @@ class Game:
                 # Blit minimap onto window
                 self.screen.blit(self.minimap, (0, 0))
 
-            #
-            # Draw UI
-            #
-
             # Fps
             fpsCount = ceil(clock.get_fps())
             fpsText = "fps: %d" % (fpsCount)
@@ -352,7 +349,7 @@ class Game:
             fpsSurface = self.font.render(fpsText, False, color)
             self.screen.blit(fpsSurface, (self.windowSize[0] - (7 * 10) - 8, 8))
 
-            # Blit win screen if player already won
+            # Win screen
             if win:
                 self.screen.blit(self.winScreen, (0, 0))
             

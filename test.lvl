@@ -1,16 +1,6 @@
-10 15
-w w w w w w w w w w
-w . . w . . . . . w
-w . w f . w w w . w
-w . w w w w . w . w
-w . . . . . . . . w
-w w w w . w . w . w
-. . . w w w . w . w
-. . . w . . . w . w
-. . . w . w w . . w
-. . . w . . . . w w
-. . . w w w w . . w
-. . . . . . w w . w
-. . p . . . w . . w
-. . . . . . . . . w
-. . . . . . w w w w
+5 5
+. . w w w
+. . w f w
+. . w . w
+p . . . w
+. . w w w
