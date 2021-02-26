@@ -7,7 +7,7 @@ class Player:
         """
         Parameters
         ----------
-        startPos : numpy Vector2
+        startPos : numpy.Vector2
         startRay : int
         raycasting : Raycasting object from raycasting.py
         fovRays : int
@@ -28,18 +28,45 @@ class Player:
         return self.pos
     
     def get_middle_ray(self):
+        """
+        Get the ray in the middle of FOV.
+        """
         return self.middleRay
     
     def get_left_ray(self):
+        """
+        Get the ray in the far left of FOV.
+        """
         return self.leftRay
     
     def get_right_ray(self):
+        """
+        Get the ray in the far right of FOV.
+        """
         return self.rightRay
     
-    def move_absolute(self, vector):
+    #
+    # Movement
+    #
+    
+    def _move_absolute(self, vector):
+        """
+        Parameters
+        ----------
+        vector : pygame.Vector2
+        """
         self.pos += vector
     
-    def move_in_ray(self, magnitude, ray):
+    def _move_in_ray(self, magnitude, ray):
+        """
+        Move a specified number of units along a ray unless
+        a collision is detected in that direction.
+
+        Parameters
+        ----------
+        magnitude : float
+        ray : int
+        """
         # Check for collision with a wall first
         foo, bar, foobar = self.raycasting.cast_rays(ray, ray, self.pos)
         distanceToWall = foo[0]
@@ -48,29 +75,68 @@ class Player:
         if not collision:
             # Now move
             vector = self.raycasting.get_ray_vector(ray)
-            vector *= magnitude
-            self.move_absolute(vector)
+            self._move_absolute(vector * magnitude)
 
     def move_forward(self, magnitude):
+        """
+        Move a specified number of units forward.
+        a collision is detected in that direction.
+
+        Parameters
+        ----------
+        magnitude : float
+        """
         ray = self.middleRay
-        self.move_in_ray(magnitude, ray)        
+        self._move_in_ray(magnitude, ray)        
     
     def move_backward(self, magnitude):
+        """
+        Move a specified number of units backward.
+        a collision is detected in that direction.
+
+        Parameters
+        ----------
+        magnitude : float
+        """
         ray = self.middleRay
         ray = self.raycasting.reverse_ray(ray)
-        self.move_in_ray(magnitude, ray) 
+        self._move_in_ray(magnitude, ray) 
     
     def move_right(self, magnitude):
+        """
+        Move a specified number of units to the right.
+        a collision is detected in that direction.
+
+        Parameters
+        ----------
+        magnitude : float
+        """
         ray = self.middleRay
         ray = self.raycasting.perpendicular_right_ray(ray)
-        self.move_in_ray(magnitude, ray) 
+        self._move_in_ray(magnitude, ray) 
     
     def move_left(self, magnitude):
+        """
+        Move a specified number of units to the left.
+        a collision is detected in that direction.
+
+        Parameters
+        ----------
+        magnitude : float
+        """
         ray = self.middleRay
         ray = self.raycasting.perpendicular_left_ray(ray)
-        self.move_in_ray(magnitude, ray) 
+        self._move_in_ray(magnitude, ray) 
 
     def turn(self, n):
+        """
+        Turn the camera a specified number of rays left (negative n)
+        or right (positive n). 
+
+        Parameters
+        ----------
+        n : int
+        """
         self.middleRay = self.raycasting.offset_ray(self.middleRay, n)
         self.leftRay = self.raycasting.offset_ray(self.leftRay, n)
         self.rightRay = self.raycasting.offset_ray(self.rightRay, n)

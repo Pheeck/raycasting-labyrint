@@ -15,10 +15,10 @@ from game import Game
 
 
 SIZE = (800, 600)
-# 4800, 2400, 1200, 600
-RAYS = 600  # 1200  # Should be a multiple of 4 and a divisor of (window width * (360 / fov))
+RAYS = 600  # Should be a multiple of 4 and a divisor of (window width * (360 / fov))
+            # Examples for SIZE=(800, 600), FOV=60: 4800, 2400, 1200, 600
 FOV = 60
-FPS = 60
+FPS = 50
 
 
 def main():
@@ -31,10 +31,20 @@ def main():
     levelFile = argv[1]
 
     # Create level object from level file
-    level = Level(levelFile)
+    try:
+        level = Level(levelFile)
+    except Exception as e:
+        print("Error while reading the level file: %s" % (e))
+        exit(1)
 
     # Create game
-    game = Game(level=level, winSize=SIZE, totalRays=RAYS, fovDegrees=FOV, targetFps=FPS)
+    game = Game(
+        level,
+        windowSize=SIZE,
+        totalRays=RAYS,
+        fovDegrees=FOV,
+        targetFps=FPS
+    )
 
     # Run game
     game.run()
